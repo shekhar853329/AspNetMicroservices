@@ -1,10 +1,10 @@
 name: SonarCloud
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "master" ]
-
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     name: Build and analyze
@@ -43,10 +43,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"shekhar853329_AspNetRun" /o:"shekhar853329" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"      
-          dotnet restore ./src/AspNetMicroservices.sln      
-          dotnet build  ./src/Services/Basket/Basket.API/Basket.API.csproj --no-restore      
-          dotnet build  ./src/Services/Catalog/Catalog.API/Catalog.API.csproj --no-restore      
-          dotnet build  ./src/Services/Discount/Discount.API/Discount.API.csproj --no-restore  
-          dotnet build  ./src/Services/Discount/Discount.GRPC/Discount.GRPC.csproj --no-restore 
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"        
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"shekhar853329_AspNetMicroservices" /o:"shekhar853329" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet restore ./src/aspnetrun-microservices.sln                
+          dotnet build  ./src/Services/Catalog/Catalog.API/Catalog.API.csproj --no-restore                        
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
