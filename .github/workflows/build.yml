@@ -45,5 +45,8 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"shekhar853329_AspNetMicroservices" /o:"shekhar853329" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet restore ./src/aspnetrun-microservices.sln                
-          dotnet build  ./src/Services/Catalog/Catalog.API/Catalog.API.csproj --no-restore                        
+          dotnet build  ./src/Services/Catalog/Catalog.API/Catalog.API.csproj --no-restore
+          dotnet build  ./src/Services/Basket/Basket.API/Basket.API.csproj --no-restore
+          dotnet build  ./src/Services/Discount/Discount.API/Discount.API.csproj --no-restore
+          dotnet build  ./src/Services/Discount/Discount.Grpc/Catalog.Grpc.csproj --no-restore
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
