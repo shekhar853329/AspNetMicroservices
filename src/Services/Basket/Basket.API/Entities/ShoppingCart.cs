@@ -15,7 +15,7 @@
                 decimal totalPrice = 0;
                 foreach (var item in Items)
                 {
-                    totalPrice += totalPrice * item.Quantity;
+                    totalPrice += item.Price * item.Quantity;
                 }
                 return totalPrice;
             }
