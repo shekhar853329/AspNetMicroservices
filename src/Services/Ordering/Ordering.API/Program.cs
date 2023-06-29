@@ -25,5 +25,6 @@ public class Program
         app.UseRouting();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
         app.Run();
+        //Sonar Test Line
     }
 }
